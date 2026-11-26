@@ -28,23 +28,23 @@ const categoryIcon = {Laptops:'▱',Accessoires:'▰',Sécurité:'✦',Réseau:'
 const productPhotos = [
   'photo-1496181133206-80ce9b88a853','photo-1517336714731-489689fd1ca8','photo-1588872657578-7efd1f1555ed',
   'photo-1553062407-98eeb64c6a62','photo-1527814050087-3793815479db','photo-1587202372775-e229f172b9d7',
-  'photo-1583863788434-e58a36330cf0','photo-1563013544-824ae1b704d3','photo-1518770660439-4636190af475',
-  'photo-1518770660439-4636190af475','photo-1519389950473-47ba0277781c','photo-1581092921461-eab62e97a780',
-  'photo-1498050108023-c5249f4df085','photo-1498050108023-c5249f4df085','photo-1518770660439-4636190af475',
-  'photo-1498050108023-c5249f4df085','photo-1518770660439-4636190af475','photo-1519389950473-47ba0277781c',
-  'photo-1518770660439-4636190af475','photo-1519389950473-47ba0277781c'
+  'photo-1583863788434-e58a36330cf0','assets/antivirus-lock.svg',
+  'https://images.unsplash.com/photo-1606904825846-647eb07f5be2?auto=format&fit=crop&w=900&q=82',
+  'https://s3-ap-southeast-1.amazonaws.com/hnsgsfp/9/images/Starlink_Preorder/Box_Desktop.png',
+  'https://shopdoubleradius.com/cdn/shop/files/CCR2116-12G-4S.jpg?v=1725049161',
+  'photo-1581092921461-eab62e97a780',
+  'https://www.donanimhaber.com/images/images/haber/194114/src_340x1912xwindows-11-e-eski-bilgisayardan-dosya-aktarma-ozelligi-geliyor.jpg',
+  'https://upload.wikimedia.org/wikipedia/commons/d/d5/Office-2021-logo.png','https://static.tildacdn.com/tild6435-3066-4062-b936-613063383164/671610_O.jpg',
+  'https://rapidpipeline.com/_assets/cad_logos_compacted_3af5835f40_Z2ib0J1.webp','https://southwestsatellitesolutions.co.uk/wp-content/uploads/2023/07/20230618_141212-scaled.jpeg',
+  'https://zitseng.com/uploads/2021/08/DSC06317.jpg','assets/locked-door.svg'
 ];
-productPhotos[7] = 'assets/antivirus-lock.svg';
-productPhotos[8] = 'https://images.unsplash.com/photo-1606904825846-647eb07f5be2?auto=format&fit=crop&w=900&q=82';
-productPhotos[9] = 'https://s3-ap-southeast-1.amazonaws.com/hnsgsfp/9/images/Starlink_Preorder/Box_Desktop.png';
-productPhotos[10] = 'https://shopdoubleradius.com/cdn/shop/files/CCR2116-12G-4S.jpg?v=1725049161';
-productPhotos[12] = 'assets/windows-logos.svg';
-productPhotos[13] = 'assets/office-2021.svg';
-productPhotos[14] = 'assets/linux-tux.svg';
-productPhotos[15] = 'assets/software-suite.svg';
-productPhotos[16] = 'assets/starlink-roof-wifi.svg';
-productPhotos[17] = 'assets/router-access-point.svg';
-productPhotos[18] = 'assets/locked-door.svg';
+const imageFallbacks = [
+  'assets/laptop-office.svg','assets/laptop-performance.svg','assets/laptop-refurbished.svg',
+  'assets/laptop-bag.svg','assets/mouse-keyboard.svg','assets/ssd-ram.svg','assets/laptop-charger.svg',
+  'assets/antivirus-lock.svg','assets/mini-wifi-router.svg','assets/starlink-kit.svg','assets/mikrotik-router.svg',
+  'assets/pc-maintenance.svg','assets/windows-logos.svg','assets/office-2021.svg','assets/linux-tux.svg',
+  'assets/software-suite.svg','assets/starlink-roof-wifi.svg','assets/router-access-point.svg','assets/locked-door.svg'
+];
 
 
 function renderSolutions() {
@@ -77,7 +77,10 @@ function renderSolutions() {
     photo.src = photoRef.startsWith('https://') || photoRef.startsWith('assets/') ? photoRef : `https://images.unsplash.com/${photoRef}?auto=format&fit=crop&w=900&q=82`;
     photo.alt = '';
     photo.loading = 'lazy';
-    photo.onerror = () => { photo.remove(); };
+    photo.onerror = () => {
+      const fallback = imageFallbacks[solutions.indexOf(item)];
+      if (!photo.src.endsWith(fallback)) photo.src = fallback;
+    };
     visual.append(photo);
     const top = document.createElement('div');
     top.className = 'product-top';

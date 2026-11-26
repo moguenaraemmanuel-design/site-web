@@ -1,1 +1,1 @@
-Le catalogue comprend maintenant la maintenance matérielle préventive et curative, le diagnostic/réparation, les installations Windows 7/8/10/11, Office 2013/2016/2019/2021, Linux Debian/Ubuntu/Kali et les logiciels métiers AutoCAD, ArchiCAD, CATIA, EPLAN, NEPLAN, Visual Paradigm et Eclipse. Les solutions sont étiquetées et la police du catalogue a été agrandie.
+TORZY DIGITAL - VERSION LOCALE COMPLETE`nOuvrir index.html dans un navigateur. Toutes les images catalogue sont incluses localement dans assets/ et ne dépendent pas de liens externes.
