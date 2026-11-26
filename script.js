@@ -45,6 +45,11 @@ const imageFallbacks = [
   'assets/pc-maintenance.svg','assets/windows-logos.svg','assets/office-2021.svg','assets/linux-tux.svg',
   'assets/software-suite.svg','assets/starlink-roof-wifi.svg','assets/router-access-point.svg','assets/locked-door.svg'
 ];
+// Keep the three frequently missed catalogue visuals inside the page itself.
+const inlineArt = svg => `data:image/svg+xml;charset=utf-8,${encodeURIComponent(svg)}`;
+productPhotos[7] = inlineArt('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 500"><rect width="900" height="500" fill="#18304b"/><g fill="#ff7664" stroke="#ffb6a8" stroke-width="6"><circle cx="225" cy="185" r="36"/><circle cx="290" cy="300" r="25"/><path d="m225 130 0-35m48 54 31-20m-93 70-37 2m87 92 22 30"/></g><path d="M430 215v-65a90 90 0 0 1 180 0v65" fill="none" stroke="#c9f27d" stroke-width="25"/><rect x="390" y="205" width="260" height="190" rx="28" fill="#c9f27d"/><circle cx="520" cy="280" r="20" fill="#18304b"/><path d="M520 300v42" stroke="#18304b" stroke-width="16"/><text x="690" y="245" fill="white" font-family="Arial" font-size="34" font-weight="bold">ANTIVIRUS</text><text x="690" y="294" fill="#d6e0e9" font-family="Arial" font-size="23">Le cadenas bloque le virus</text></svg>');
+productPhotos[12] = inlineArt('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 500"><rect width="900" height="500" fill="#f2f6fa"/><g font-family="Arial" text-anchor="middle" fill="#20334d"><g transform="translate(225 160)"><path fill="#1488cf" d="M-65-55 0-65v60h-65zm75-12 55-8v80H10zM-65 15H0v60l-65-9zm75 0h55v80l-55-8z"/><text y="120" font-size="25">Windows 7</text></g><g transform="translate(675 160)"><path fill="#08a7df" d="M-65-55H-5V5h-60zm70 0h60V5H5zM-65 15H-5v60h-60zm70 0h60v60H5z"/><text y="120" font-size="25">Windows 8</text></g><g transform="translate(225 365)"><path fill="#0878c9" d="M-65-55H-5V5h-60zm70 0h60V5H5zM-65 15H-5v60h-60zm70 0h60v60H5z"/><text y="120" font-size="25">Windows 10</text></g><g transform="translate(675 365)"><path fill="#0878c9" d="M-65-55H-5V5h-60zm70 0h60V5H5zM-65 15H-5v60h-60zm70 0h60v60H5z"/><text y="120" font-size="25">Windows 11</text></g></g></svg>');
+productPhotos[18] = inlineArt('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 500"><rect width="900" height="500" fill="#e9eff4"/><rect x="275" y="42" width="350" height="410" rx="14" fill="#263752"/><rect x="300" y="68" width="300" height="360" rx="5" fill="#354b68"/><circle cx="555" cy="250" r="12" fill="#d9e2ec"/><path d="M385 238v-45a65 65 0 0 1 130 0v45" fill="none" stroke="#c9f27d" stroke-width="20"/><rect x="365" y="225" width="170" height="135" rx="20" fill="#c9f27d"/><circle cx="450" cy="280" r="15" fill="#263752"/><path d="M450 295v30" stroke="#263752" stroke-width="12"/><text x="450" y="478" text-anchor="middle" font-family="Arial" font-size="24" font-weight="bold" fill="#263752">PORTAIL CAPTIF · ACCÈS SÉCURISÉ</text></svg>');
 
 
 function renderSolutions() {
@@ -74,7 +79,7 @@ function renderSolutions() {
     const photo = document.createElement('img');
     photo.className = 'product-photo';
     const photoRef = productPhotos[solutions.indexOf(item)];
-    photo.src = photoRef.startsWith('https://') || photoRef.startsWith('assets/') ? photoRef : `https://images.unsplash.com/${photoRef}?auto=format&fit=crop&w=900&q=82`;
+    photo.src = photoRef.startsWith('https://') || photoRef.startsWith('assets/') || photoRef.startsWith('data:') ? photoRef : `https://images.unsplash.com/${photoRef}?auto=format&fit=crop&w=900&q=82`;
     photo.alt = '';
     photo.loading = 'lazy';
     photo.onerror = () => {
